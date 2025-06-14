@@ -574,7 +574,7 @@ private slowMoveToTarget(targetIndex?: number): void {
     this.run()
   }
 
- /**
+/**
  * 对外暴露: 缓慢停止方法
  * @param index 中奖索引
  * @param config 停止配置项
@@ -642,10 +642,10 @@ private run(num: number = 0): void {
   let currIndex = this.currIndex;
   
   if (step === 1 || startInterval < accelerationTime) { // 加速阶段
-    // 记录帧率
+
     this.FPS = startInterval / num;
     const currSpeed = quad.easeIn(startInterval, 0.1, speed - 0.1, accelerationTime);
-    // 加速到峰值后, 进入匀速阶段
+
     if (currSpeed === speed) {
       this.step = 2;
     }
@@ -657,16 +657,16 @@ private run(num: number = 0): void {
     // 如果 prizeFlag 有值, 则进入减速阶段
     if (prizeFlag !== void 0 && prizeFlag >= 0) {
       if (this.intermediateStop && !this.isFinalStop) {
-        // 先减速到中间点
+
         this.step = 3;
         this.endTime = Date.now();
-        // 计算减速到中间点的位置
+
         this.carveOnGunwaleOfAMovingBoat(this.intermediateIndex);
       } else {
-        // 直接减速到最终点
+
         this.step = 3;
         this.endTime = Date.now();
-        // 清空上一次的位置信息
+
         this.stopIndex = 0;
         this.endIndex = 0;
       }
@@ -678,7 +678,7 @@ private run(num: number = 0): void {
     
     if (endInterval >= decelerationTime) {
       if (this.intermediateStop && !this.isFinalStop) {
-        // 到达中间点，暂停一段时间
+
         this.step = 4; // 进入暂停阶段
         this.pauseStartTime = Date.now();
       } else {
@@ -690,30 +690,22 @@ private run(num: number = 0): void {
   else if (step === 4) { // 暂停阶段
     const pauseInterval = Date.now() - this.pauseStartTime;
     if (pauseInterval >= this.stopDelay) {
-      // 暂停结束，低速移动到最终点
-      this.step = 5; // 进入低速移动阶段
+      this.step = 5;
       this.slowMoveStartTime = Date.now();
-      // 计算从中间点到最终点的位置
       this.carveOnGunwaleOfAMovingBoat(this.prizeFlag!);
       this.isFinalStop = true;
     }
-    // 保持当前位置不变
     currIndex = this.currIndex;
   }
 else if (step === 5) {
-    // 初始化移动目标
 
-
-    // 执行移动
     if (!this._isSlowMoveInitialized) {
 		this.slowMoveToTarget(this.prizeFlag!);
       this._isSlowMoveInitialized = true;
-      console.log(`开始移动：从 ${this.currIndex} 到 ${this.endIndex}`);
       this.currIndex += 1;
-      this.draw(); // 每次移动后立即绘制
+      this.draw();
     } else {
       // 移动完成
-	  console.log(`完成结束`);
       this.step = 0;
       this._isSlowMoveInitialized = false;
       this.endCallback?.(this.prizes[this.prizeFlag!]);
