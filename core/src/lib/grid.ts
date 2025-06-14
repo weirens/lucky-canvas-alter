@@ -554,7 +554,6 @@ private slowMoveToTarget(targetIndex?: number): void {
   // 设置绝对目标位置（保持currIndex增长趋势）
   this.endIndex = currIndex + distance;
   
-  console.log(`移动计算：${currentPos} → ${finalTarget}，距离=${distance}，绝对目标=${this.endIndex}`);
 }
 
   /**
