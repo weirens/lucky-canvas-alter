@@ -22,12 +22,12 @@
 
 ### 传统用法
 ```javascript
-this.$refs.lucky.stop(2);
+.stop(2);
 ```
 
 ### 增强用法
 ```javascript
-this.$refs.lucky.stop(2, {
+.stop(2, {
   intermediateStop: true,   // 启用经停效果
   intermediateIndex: 1,    // 经停位置索引
   stopDelay: 1000          // 停留时长(ms)
