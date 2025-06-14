@@ -49,7 +49,7 @@ this.$refs.lucky.stop(2, {
 
 ## 兼容性
 - Vue 2/3  
-- React 16+  
+- uniapp（已测试）  
 - 原版 Lucky Canvas ≥ 2.4.0
 
 ![效果演示](效果图.gif)
