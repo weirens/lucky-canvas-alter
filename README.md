@@ -14,7 +14,7 @@
 1. 下载增强版 JS 文件
 2. 替换原项目文件：
    ```bash
-   cp lucky-canvas-enhanced.js node_modules/lucky-canvas/dist/
+   cp lucky-canvas/packages/core/dist node_modules/lucky-canvas/dist/
    ```
 3\. 重启开发服务器
 
